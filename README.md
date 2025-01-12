@@ -82,4 +82,63 @@ class Solution:
         return chr(ans)
 ```
 
+## Question 3
 
+**28. Find the Index of the First Occurrence in a String**
+
+Given two strings needle and haystack, return the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack.
+
+**Example 1:**
+
+**Input:** haystack = "sadbutsad", needle = "sad"
+**Output:** 0
+**Explanation:** "sad" occurs at index 0 and 6.
+The first occurrence is at index 0, so we return 0.
+
+```python
+class Solution:
+    def strStr(self, haystack: str, needle: str) -> int:
+        return haystack.find(needle)
+```
+
+Other approaches to explain in case of interview:
+We could make use of a loop and slice function to compare the sliced haystack string with the needle.
+
+## Question 4
+
+**242. Valid Anagram**
+
+Given two strings s and t, return true if t is an anagram of s, and false otherwise.
+
+**Example 1:**
+
+**Input:** s = "anagram", t = "nagaram"
+**Output:** true
+
+```python
+from collections import Counter
+
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        return Counter(s) == Counter(t)
+```
+Other approches:
+Sort the strings and compare the sorted string to check if they are an anagram or not.
+
+## Question 5
+
+**459. Repeated Substring Pattern**
+
+Given a string s, check if it can be constructed by taking a substring of it and appending multiple copies of the substring together.
+
+**Example 1:**
+
+**Input:** s = "abab"
+**Output:** true
+**Explanation:** It is the substring "ab" twice.
+
+```python
+class Solution:
+    def repeatedSubstringPattern(self, s: str) -> bool:
+        return s in s[1:] + s[:-1]
+```
