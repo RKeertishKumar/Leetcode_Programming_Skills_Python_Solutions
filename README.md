@@ -218,3 +218,109 @@ class Solution:
         return [1] + digits
 ```
 
+## Question 8
+
+**1822. Sign of the Product of an Array**
+
+Implement a function signFunc(x) that returns:
+
+1 if x is positive.
+-1 if x is negative.
+0 if x is equal to 0.
+You are given an integer array nums. Let product be the product of all values in the array nums.
+
+Return signFunc(product).
+Example 1:
+
+Input: nums = [-1,-2,-3,-4,3,2,1]
+Output: 1
+Explanation: The product of all values in the array is 144, and signFunc(144) = 1
+
+```python
+class Solution:
+    def arraySign(self, nums: List[int]) -> int:
+        if 0 in nums:
+            return 0
+        p = 0
+        n = 0
+        for i in nums:
+            if i < 0:
+                n += 1
+        
+        if n%2 == 0:
+            return 1
+        else:
+            return -1
+```
+
+## Question 9
+
+**1502. Can Make Arithmetic Progression From Sequence**
+
+A sequence of numbers is called an arithmetic progression if the difference between any two consecutive elements is the same.
+
+Given an array of numbers arr, return true if the array can be rearranged to form an arithmetic progression. Otherwise, return false.
+
+Example 1:
+
+Input: arr = [3,5,1]
+Output: true
+Explanation: We can reorder the elements as [1,3,5] or [5,3,1] with differences 2 and -2 respectively, between each consecutive elements.
+
+```python
+class Solution:
+    def canMakeArithmeticProgression(self, arr: List[int]) -> bool:
+        arr.sort()
+        diff = arr[1] - arr[0]
+
+        for i in range(1, len(arr) - 1):
+            if diff != arr[i + 1] - arr[i]:
+                return False
+            else:
+                i += 1
+            
+        return True
+```
+
+## Question 10
+
+**896. Monotonic Array**
+
+An array is monotonic if it is either monotone increasing or monotone decreasing.
+An array nums is monotone increasing if for all i <= j, nums[i] <= nums[j]. An array nums is monotone decreasing if for all i <= j, nums[i] >= nums[j].
+Given an integer array nums, return true if the given array is monotonic, or false otherwise.
+
+Example 1:
+
+Input: nums = [1,2,2,3]
+Output: true
+
+A simple one pass code that checks if there is a greater than or not scenario, stores the result in boolean to compute at the end for both conditions
+
+```python
+class Solution:
+    def isMonotonic(self, nums: List[int]) -> bool:
+        is_increasing = True
+        is_decreasing = True
+        for i in range(0, len(nums) - 1):
+            if nums[i] > nums[i + 1]:
+                is_increasing = False
+            if nums[i] < nums[i + 1]:
+                is_decreasing = False
+
+        return is_increasing or is_decreasing
+```
+
+Another simple method to sort the list and compare it for ascending order list. Then reverse the sorted list to compare with the decreasing list scenario
+
+```python
+class Solution:
+    def isMonotonic(self, nums: List[int]) -> bool:
+        sorted_nums = sorted(nums)
+        if nums == sorted_nums:
+            return True
+        elif nums == list(reversed(sorted_nums)):
+            return True
+        else:
+            return False
+```
